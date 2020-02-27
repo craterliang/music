@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.SongPlayMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.SongPlay">
+    <result column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="play_number" jdbcType="INTEGER" property="playNumber" />
+    <result column="play_time" jdbcType="INTEGER" property="playTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.gmd.pojo.SongPlay">
+    insert into song_play (song_id, user_id, play_number, 
+      play_time)
+    values (#{songId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{playNumber,jdbcType=INTEGER}, 
+      #{playTime,jdbcType=INTEGER})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select song_id, user_id, play_number, play_time
+    from song_play
+  </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.SongMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.Song">
+    <id column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="singer_id" jdbcType="INTEGER" property="singerId" />
+    <result column="song_desc" jdbcType="VARCHAR" property="songDesc" />
+    <result column="song_style" jdbcType="VARCHAR" property="songStyle" />
+    <result column="song_langue" jdbcType="VARCHAR" property="songLangue" />
+    <result column="song_path" jdbcType="VARCHAR" property="songPath" />
+    <result column="song_pic_path" jdbcType="VARCHAR" property="songPicPath" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from song
+    where song_id = #{songId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.Song">
+    insert into song (song_id, singer_id, song_desc, 
+      song_style, song_langue, song_path, 
+      song_pic_path)
+    values (#{songId,jdbcType=INTEGER}, #{singerId,jdbcType=INTEGER}, #{songDesc,jdbcType=VARCHAR}, 
+      #{songStyle,jdbcType=VARCHAR}, #{songLangue,jdbcType=VARCHAR}, #{songPath,jdbcType=VARCHAR}, 
+      #{songPicPath,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.Song">
+    update song
+    set singer_id = #{singerId,jdbcType=INTEGER},
+      song_desc = #{songDesc,jdbcType=VARCHAR},
+      song_style = #{songStyle,jdbcType=VARCHAR},
+      song_langue = #{songLangue,jdbcType=VARCHAR},
+      song_path = #{songPath,jdbcType=VARCHAR},
+      song_pic_path = #{songPicPath,jdbcType=VARCHAR}
+    where song_id = #{songId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select song_id, singer_id, song_desc, song_style, song_langue, song_path, song_pic_path
+    from song
+    where song_id = #{songId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select song_id, singer_id, song_desc, song_style, song_langue, song_path, song_pic_path
+    from song
+  </select>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="user_sex" jdbcType="INTEGER" property="userSex" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_image" jdbcType="VARCHAR" property="userImage" />
+    <result column="user_rdate" jdbcType="VARCHAR" property="userRdate" />
+    <result column="user_role" jdbcType="INTEGER" property="userRole" />
+    <result column="user_birthday" jdbcType="VARCHAR" property="userBirthday" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.User">
+    insert into user (user_id, user_name, user_pwd, 
+      user_sex, user_email, user_image, 
+      user_rdate, user_role, user_birthday
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=INTEGER}, #{userEmail,jdbcType=VARCHAR}, #{userImage,jdbcType=VARCHAR}, 
+      #{userRdate,jdbcType=VARCHAR}, #{userRole,jdbcType=INTEGER}, #{userBirthday,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=INTEGER},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_image = #{userImage,jdbcType=VARCHAR},
+      user_rdate = #{userRdate,jdbcType=VARCHAR},
+      user_role = #{userRole,jdbcType=INTEGER},
+      user_birthday = #{userBirthday,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd, user_sex, user_email, user_image, user_rdate, 
+    user_role, user_birthday
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd, user_sex, user_email, user_image, user_rdate, 
+    user_role, user_birthday
+    from user
+  </select>
+  <select id="login" parameterType="com.gmd.pojo.User" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd
+    from user where user_name = #{userName,jdbcType=VARCHAR} and user_pwd = #{userPwd,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd, user_sex, user_email, user_image, user_rdate,
+    user_role, user_birthday
+    from user where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <select id="findUserByname" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select user_id, user_name, user_pwd, user_sex, user_email, user_image, user_rdate,
+    user_role, user_birthday
+    from user where user_name like #{uname}
+  </select>
+  <select id="selectByNameEmail" parameterType="com.gmd.pojo.User" resultMap="BaseResultMap">
+    select user_id, user_name, user_email
+    from user
+    where user_name = #{userName,jdbcType=VARCHAR} and  user_email = #{userEmail,jdbcType=VARCHAR}
+  </select>
+  <update id="updateUserById" parameterType="com.gmd.pojo.User">
+    update user
+    set
+      user_pwd = #{userPwd,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

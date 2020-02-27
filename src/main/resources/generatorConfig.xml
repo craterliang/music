@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <classPathEntry location="D:/workspace/workspace_J-C/mysql-connector-java-5.1.41-bin.jar"/>
+
+    <context id="context1" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/music?useSSL=false"
+                        driverClass="com.mysql.jdbc.Driver" password="liangli577" userId="root" />
+
+        <javaModelGenerator targetPackage="com.gmd.pojo" targetProject="./src/main/java" />
+
+        <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources" />
+        <javaClientGenerator targetPackage="com.gmd.mapper" targetProject="./src/main/java" type="XMLMAPPER" />
+
+         <table schema="music" tableName="singer" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+                enableDeleteByPrimaryKey="true">
+             <columnOverride column="useActualColumnNames" property="false" />
+         </table>
+        <table schema="music" tableName="song" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true">
+            <columnOverride column="useActualColumnNames" property="false" />
+        </table>
+        <table schema="music" tableName="song_collect" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+                       enableDeleteByPrimaryKey="true">
+            <columnOverride column="useActualColumnNames" property="false" />
+        </table>
+        <table schema="music" tableName="song_play" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+                   enableDeleteByPrimaryKey="true">
+            <columnOverride column="useActualColumnNames" property="false" />
+        </table>
+        <table schema="music" tableName="song_reviews" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+                       enableDeleteByPrimaryKey="true">
+            <columnOverride column="useActualColumnNames" property="false" />
+        </table>
+        <table schema="music" tableName="user" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true">
+            <columnOverride column="useActualColumnNames" property="false" />
+        </table>
+    </context>
+</generatorConfiguration>

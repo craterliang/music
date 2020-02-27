@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.SongCollectMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.SongCollect">
+    <id column="playlist_id" jdbcType="INTEGER" property="playlistId" />
+    <result column="playlist_name" jdbcType="VARCHAR" property="playlistName" />
+    <result column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from song_collect
+    where playlist_id = #{playlistId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.SongCollect">
+    insert into song_collect (playlist_id, playlist_name, song_id, 
+      user_id)
+    values (#{playlistId,jdbcType=INTEGER}, #{playlistName,jdbcType=VARCHAR}, #{songId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.SongCollect">
+    update song_collect
+    set playlist_name = #{playlistName,jdbcType=VARCHAR},
+      song_id = #{songId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
+    where playlist_id = #{playlistId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select playlist_id, playlist_name, song_id, user_id
+    from song_collect
+    where playlist_id = #{playlistId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select playlist_id, playlist_name, song_id, user_id
+    from song_collect
+  </select>
+</mapper>
