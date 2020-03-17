@@ -50,7 +50,7 @@
     from user
   </select>
   <select id="login" parameterType="com.gmd.pojo.User" resultMap="BaseResultMap">
-    select user_id, user_name, user_pwd
+    select user_id, user_name, user_pwd,user_role
     from user where user_name = #{userName,jdbcType=VARCHAR} and user_pwd = #{userPwd,jdbcType=VARCHAR}
   </select>
   <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">

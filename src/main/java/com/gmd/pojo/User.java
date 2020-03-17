@@ -15,11 +15,12 @@ public class User {
 
     private String userImage;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private String userRdate;
 
     private Integer userRole;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String userBirthday;
 
     public Integer getUserId() {

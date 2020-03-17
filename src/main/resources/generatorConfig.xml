@@ -21,7 +21,7 @@
                 enableDeleteByPrimaryKey="true">
              <columnOverride column="useActualColumnNames" property="false" />
          </table>
-        <table schema="music" tableName="song" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+       <!-- <table schema="music" tableName="song" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true">
             <columnOverride column="useActualColumnNames" property="false" />
         </table>
@@ -40,6 +40,6 @@
         <table schema="music" tableName="user" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true">
             <columnOverride column="useActualColumnNames" property="false" />
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

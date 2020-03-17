@@ -1,6 +1,8 @@
 package com.gmd.test;
 
+import com.gmd.pojo.Singer;
 import com.gmd.pojo.User;
+import com.gmd.service.SingerService;
 import com.gmd.service.UserService;
 import javafx.scene.input.DataFormat;
 import org.junit.Test;
@@ -13,26 +15,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class test {
     @Autowired
-    private UserService userService;
+    private SingerService userService;
 
     @Test
     public  void ff(){
-        /*User user =new  User();
+        Singer user =new  Singer();
         for ( int i = 1; i<50 ; i++) {
-            *//*user.setUserId("user"+i);*//*
-            user.setUserName("libao"+i);
-            user.setUserSex(1);
-            user.setUserPwd(i+"1djbnjankj342332"+i);
-            user.setUserEmail(i+i+i+"@qq.com");
-            user.setUserImage(i+"213fsdf22313");
-            user.setUserRole(0);
-            user.setUserAge(i+"2020");
-            user.setUserRdate("2020"+i);
+            //*user.setUserId("user"+i);*//*
+            user.setSingerName("张杰"+i);
+            user.setSingerSex("1");
+            user.setSingerDesc(i+"非常棒"+i);
+            user.setSingerType("华语男歌手");
+            user.setSingerImage("f876bc2a28c74579bbce5111a4616ecb");
             this.userService.insert(user);
-        }*/
+        }
         //System.out.println(this.userService.selectAll();
-        Integer i =1;
-        System.out.println(this.userService.selectByPrimaryKey(6));
+        /*Integer i =1;
+        System.out.println(this.userService.selectByPrimaryKey(6));*/
         //System.out.println(this.userService.deleteByPrimaryKey(50));
 
     }

@@ -21,6 +21,6 @@ public interface UserMapper {
     List<User> findUserByname(String uname);
 
     User selectByNameEmail(User user);
-
+    //修改密码
     int updateUserById(User user);
 }
