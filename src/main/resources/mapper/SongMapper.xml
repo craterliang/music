@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.SongMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.Song">
+    <id column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="singer_id" jdbcType="INTEGER" property="singerId" />
+    <result column="song_name" jdbcType="VARCHAR" property="songName" />
+    <result column="song_style" jdbcType="VARCHAR" property="songStyle" />
+    <result column="song_langue" jdbcType="VARCHAR" property="songLangue" />
+    <result column="song_path" jdbcType="VARCHAR" property="songPath" />
+    <result column="song_time" jdbcType="VARCHAR" property="songTime" />
+    <result column="song_album" jdbcType="VARCHAR" property="songAlbum" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from song
+    where song_id = #{songId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.Song">
+    insert into song (song_id, singer_id, song_name, 
+      song_style, song_langue, song_path, 
+      song_time, song_album)
+    values (#{songId,jdbcType=INTEGER}, #{singerId,jdbcType=INTEGER}, #{songName,jdbcType=VARCHAR}, 
+      #{songStyle,jdbcType=VARCHAR}, #{songLangue,jdbcType=VARCHAR}, #{songPath,jdbcType=VARCHAR}, 
+      #{songTime,jdbcType=VARCHAR}, #{songAlbum,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.Song">
+    update song
+    set singer_id = #{singerId,jdbcType=INTEGER},
+      song_name = #{songName,jdbcType=VARCHAR},
+      song_style = #{songStyle,jdbcType=VARCHAR},
+      song_langue = #{songLangue,jdbcType=VARCHAR},
+      song_path = #{songPath,jdbcType=VARCHAR},
+      song_time = #{songTime,jdbcType=VARCHAR},
+      song_album = #{songAlbum,jdbcType=VARCHAR}
+    where song_id = #{songId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select song_id, singer_id, song_name, song_style, song_langue, song_path, song_time, 
+    song_album
+    from song
+    where song_id = #{songId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select song_id, singer_id, song_name, song_style, song_langue, song_path, song_time, 
+    song_album
+    from song
+  </select>
+
+  <select id="selectSongByColumns" parameterType="com.gmd.pojo.SongVO" resultMap="SongResultMap">
+    SELECT so.song_id, si.singer_name, so.song_name, so.song_style, so.song_langue, so.song_path, so.song_time, so.song_album
+    from singer si JOIN song so on so.song_id = si.singer_id
+    <include refid="songColumns"></include>
+    order by so.song_id desc
+  </select>
+  <sql id="songColumns">
+    <where>
+      <if test="songName != null and songName !=''">
+        and so.song_name like #{songName}
+      </if>
+      <if test="songStyle !='-1'">
+        and so.song_style = #{songStyle}
+      </if>
+      <if test="songLangue !='-1'">
+        and so.song_langue = #{songLangue}
+      </if>
+
+    </where>
+  </sql>
+  <resultMap id="SongResultMap" type="com.gmd.pojo.SongVO">
+    <id column="song_id" jdbcType="INTEGER" property="songId"/>
+    <result column="singer_Name" jdbcType="INTEGER" property="singerName" />
+    <result column="song_name" jdbcType="VARCHAR" property="songName" />
+    <result column="song_style" jdbcType="VARCHAR" property="songStyle" />
+    <result column="song_langue" jdbcType="VARCHAR" property="songLangue" />
+    <result column="song_path" jdbcType="VARCHAR" property="songPath" />
+    <result column="song_time" jdbcType="VARCHAR" property="songTime" />
+    <result column="song_album" jdbcType="VARCHAR" property="songAlbum" />
+  </resultMap>
+</mapper>
