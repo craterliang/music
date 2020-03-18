@@ -17,14 +17,15 @@
         <sqlMapGenerator targetPackage="mapper" targetProject="./src/main/resources" />
         <javaClientGenerator targetPackage="com.gmd.mapper" targetProject="./src/main/java" type="XMLMAPPER" />
 
-         <table schema="music" tableName="singer" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+        <!-- <table schema="music" tableName="singer" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
                 enableDeleteByPrimaryKey="true">
              <columnOverride column="useActualColumnNames" property="false" />
-         </table>
-       <!-- <table schema="music" tableName="song" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
+         </table>-->
+       <table schema="music" tableName="song" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true">
             <columnOverride column="useActualColumnNames" property="false" />
         </table>
+        <!--
         <table schema="music" tableName="song_collect" enableSelectByExample="true" enableUpdateByPrimaryKey="true"
                        enableDeleteByPrimaryKey="true">
             <columnOverride column="useActualColumnNames" property="false" />

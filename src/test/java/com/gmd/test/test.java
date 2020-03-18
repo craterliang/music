@@ -1,9 +1,11 @@
 package com.gmd.test;
 
+import com.gmd.pojo.Mp3Info;
 import com.gmd.pojo.Singer;
 import com.gmd.pojo.User;
 import com.gmd.service.SingerService;
 import com.gmd.service.UserService;
+import com.gmd.util.Mp3InfoUtil;
 import javafx.scene.input.DataFormat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,4 +37,11 @@ public class test {
         //System.out.println(this.userService.deleteByPrimaryKey(50));
 
     }
+    @Test
+    public  void tt(){
+            Mp3Info songInfo = new Mp3Info();
+            songInfo= Mp3InfoUtil.getSongInfo("D:\\Windows_library\\musicLib\\video\\123345.mp3");
+            System.out.println(songInfo);
+
+        }
 }

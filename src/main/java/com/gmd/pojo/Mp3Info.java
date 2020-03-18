@@ -11,6 +11,8 @@ public class Mp3Info {
     private String album;
     //时长
     private Time duration;
+    //uuid
+    private String uuid;
 
     public String getSongName() {
         return songName;
@@ -44,10 +46,16 @@ public class Mp3Info {
         this.duration = duration;
     }
 
-    public Mp3Info() {
+    public String getUuid() {
+        return uuid;
     }
 
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
+    public Mp3Info() {
+    }
 
     public Mp3Info(String songName, String singerName, String album, Time duration) {
         this.songName = songName;
@@ -63,6 +71,7 @@ public class Mp3Info {
                 ", singerName='" + singerName + '\'' +
                 ", album='" + album + '\'' +
                 ", duration=" + duration +
+                ", uuid='" + uuid + '\'' +
                 '}';
     }
 }
