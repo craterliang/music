@@ -29,7 +29,7 @@ public class UserController {
         return this.userService.login(user);
     }
     
-    @RequestMapping("/selectByName")    //  localhost:8082/user/selectByName
+    @RequestMapping("/selectByName")
     public Integer selectByName(String uname) {
         User user = this.userService.selectByName(uname);
         if (user == null) {
@@ -37,7 +37,6 @@ public class UserController {
         } else {
             return 0;
         }
-
     }
     @RequestMapping("/selectById")
     public User selectById(Integer Id) {

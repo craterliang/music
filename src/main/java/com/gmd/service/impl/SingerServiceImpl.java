@@ -37,6 +37,11 @@ public class SingerServiceImpl implements SingerService {
     }
 
     @Override
+    public Singer selectByName(String singerName) {
+        return this.singerMapper.selectByName(singerName);
+    }
+
+    @Override
     public int updateByPrimaryKey(Singer record) {
         return singerMapper.updateByPrimaryKey(record);
     }

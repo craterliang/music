@@ -1,9 +1,12 @@
-package com.gmd.mapper;
+package com.gmd.service;
 
+import com.github.pagehelper.PageInfo;
 import com.gmd.pojo.SongReviews;
+import com.gmd.pojo.SongReviewsVO;
+
 import java.util.List;
 
-public interface SongReviewsMapper {
+public interface ReviewsService {
     int deleteByPrimaryKey(Integer reviewsId);
 
     int insert(SongReviews record);
@@ -13,4 +16,6 @@ public interface SongReviewsMapper {
     List<SongReviews> selectAll();
 
     int updateByPrimaryKey(SongReviews record);
+
+    PageInfo<SongReviewsVO> selectReviewsByColumns(SongReviewsVO songReviewsVO, Integer pageNumber);
 }

@@ -14,6 +14,8 @@ public interface SingerService {
 
     List<Singer> selectAll();
 
+    Singer selectByName(String singerName);
+
     int updateByPrimaryKey(Singer record);
 
     PageInfo<Singer> findSingerByname(String uname, Integer pageNumber);

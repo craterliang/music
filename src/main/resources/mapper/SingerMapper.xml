@@ -11,7 +11,7 @@
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from singer
-    where singer_id = #{singerId,jdbcType=INTEGER}
+    where singer_id = #{singerId,jdbcType=INTEGER};
   </delete>
   <insert id="insert" parameterType="com.gmd.pojo.Singer">
     insert into singer (singer_id, singer_name, singer_sex, 
@@ -38,6 +38,10 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select singer_id, singer_name, singer_sex, singer_desc, singer_type, singer_image
     from singer
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  singer_id, singer_name, singer_sex, singer_desc, singer_type, singer_image
+    from singer where singer_name = #{singerName,jdbcType=VARCHAR} limit 1
   </select>
   <select id="findSingerByname" parameterType="java.lang.String" resultMap="BaseResultMap">
     select singer_id, singer_name, singer_sex, singer_desc, singer_type, singer_image

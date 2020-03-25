@@ -1,7 +1,6 @@
 package com.gmd.mapper;
 
 import com.gmd.pojo.Singer;
-import com.gmd.pojo.User;
 
 import java.util.List;
 
@@ -15,6 +14,8 @@ public interface SingerMapper {
     List<Singer> selectAll();
 
     int updateByPrimaryKey(Singer record);
+
+    Singer selectByName(String singerName);
 
     List<Singer> findSingerByname(String uname);
 }

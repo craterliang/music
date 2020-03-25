@@ -48,7 +48,7 @@
 
   <select id="selectSongByColumns" parameterType="com.gmd.pojo.SongVO" resultMap="SongResultMap">
     SELECT so.song_id, si.singer_name, so.song_name, so.song_style, so.song_langue, so.song_path, so.song_time, so.song_album
-    from singer si JOIN song so on so.song_id = si.singer_id
+    from singer si JOIN song so on so.singer_id  = si.singer_id
     <include refid="songColumns"></include>
     order by so.song_id desc
   </select>

@@ -2,11 +2,15 @@ package com.gmd.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.gmd.pojo.Singer;
+import com.gmd.pojo.User;
 import com.gmd.service.SingerService;
 import com.gmd.util.DeleteFileUtil;
+import net.sf.jsqlparser.statement.select.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("singer")
@@ -22,6 +26,11 @@ public class SIngerController {
         return singer;
     }
 
+    @RequestMapping("/findAllSinger")
+    public List<Singer> findAllSinger() {
+        return singerService.selectAll();
+    }
+
     @RequestMapping("/findAll")
     public PageInfo<Singer> findAll(String uname, Integer pageNumber) {
         if (uname != null && uname != "") {
@@ -31,7 +40,10 @@ public class SIngerController {
         }
         return this.singerService.findSingerByname(uname, pageNumber);
     }
-
+    @RequestMapping("/selectByName")
+    public Singer selectByName(String uname) {
+        return this.singerService.selectByName(uname);
+    }
     @RequestMapping("/insert")
     public Integer insert(Singer singer) {
         return this.singerService.insert(singer);

@@ -28,10 +28,7 @@ public class SongController {
         return this.songService.deleteByPrimaryKey(songId);
     }
     @RequestMapping("/updateSong")
-    public Integer updateSong(Song song, Integer upBool) {
-        if (upBool == 1) {
-            deleteImgFile(song.getSongId());
-        }
+    public Integer updateSong(Song song) {
         return this.songService.updateByPrimaryKey(song);
     }
     @RequestMapping("/selectSongById")
