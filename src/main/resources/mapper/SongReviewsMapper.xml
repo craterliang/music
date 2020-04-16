@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.SongReviewsMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.SongReviews">
+    <id column="reviews_id" jdbcType="INTEGER" property="reviewsId" />
+    <result column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="reviews_status" jdbcType="INTEGER" property="reviewsStatus" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from song_reviews
+    where reviews_id = #{reviewsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.SongReviews">
+    insert into song_reviews (reviews_id, song_id, user_id, 
+      content, create_time, reviews_status
+      )
+    values (#{reviewsId,jdbcType=INTEGER}, #{songId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{reviewsStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.SongReviews">
+    update song_reviews
+    set reviews_status = #{reviewsStatus,jdbcType=INTEGER}
+    where reviews_id = #{reviewsId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select reviews_id, song_id, user_id, content, create_time, reviews_status
+    from song_reviews
+    where reviews_id = #{reviewsId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select reviews_id, song_id, user_id, content, create_time, reviews_status
+    from song_reviews
+  </select>
+  <select id="selectReviewsByColumns" parameterType="com.gmd.pojo.SongReviewsVO" resultMap="ReviewsResultMap">
+    select re.reviews_id, re.song_id,so.song_name, re.user_id,us.user_name, re.content, re.create_time, re.reviews_status
+    from song_reviews re JOIN song so JOIN user us on re.song_id = so.song_id and re.user_id = us.user_id
+    <include refid="reColumns"></include>
+    order by re.create_time desc
+  </select>
+  <sql id="reColumns">
+    <where>
+      <if test="songName != null and songName !=''">
+        and so.song_name like #{songName}
+      </if>
+      <if test="userName != null and userName !=''">
+        and us.user_name like #{userName}
+      </if>
+    </where>
+  </sql>
+  <resultMap id="ReviewsResultMap" type="com.gmd.pojo.SongReviewsVO">
+    <id column="reviews_id" jdbcType="INTEGER" property="reviewsId" />
+    <result column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="song_name" jdbcType="VARCHAR" property="songName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="reviews_status" jdbcType="INTEGER" property="reviewsStatus" />
+  </resultMap>
+</mapper>

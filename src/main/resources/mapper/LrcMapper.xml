@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.LrcMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.Lrc">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lrc_name" jdbcType="VARCHAR" property="lrcName" />
+    <result column="lrc_path" jdbcType="VARCHAR" property="lrcPath" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lrc
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.Lrc">
+    insert into lrc (id, lrc_name, lrc_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{lrcName,jdbcType=VARCHAR}, #{lrcPath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.Lrc">
+    update lrc
+    set lrc_name = #{lrcName,jdbcType=VARCHAR},
+      lrc_path = #{lrcPath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, lrc_name, lrc_path
+    from lrc
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, lrc_name, lrc_path
+    from lrc
+  </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, lrc_name, lrc_path
+    from lrc where lrc_name like #{lrc,jdbcType=VARCHAR} limt 1
+  </select>
+  <select id="selectLrcByColumns" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, lrc_name, lrc_path
+    from lrc where lrc_name like #{lrc,jdbcType=VARCHAR}
+  </select>
+</mapper>

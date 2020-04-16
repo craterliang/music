@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gmd.mapper.SongCollectMapper">
+  <resultMap id="BaseResultMap" type="com.gmd.pojo.SongCollect">
+    <id column="playlist_id" jdbcType="INTEGER" property="playlistId" />
+    <result column="playlist_name" jdbcType="VARCHAR" property="playlistName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from song_collect
+    where playlist_id = #{playlistId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gmd.pojo.SongCollect">
+    insert into song_collect (playlist_id, playlist_name, user_id
+      )
+    values (#{playlistId,jdbcType=INTEGER}, #{playlistName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.gmd.pojo.SongCollect">
+    update song_collect
+    set playlist_name = #{playlistName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER}
+    where playlist_id = #{playlistId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select playlist_id, playlist_name, user_id
+    from song_collect
+    where playlist_id = #{playlistId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select playlist_id, playlist_name, user_id
+    from song_collect
+  </select>
+  <select id="selectSongCollect" parameterType="com.gmd.pojo.SongCollect" resultMap="ColleResultMap">
+    select s.playlist_id, s.playlist_name, s.user_id,u.user_name
+    from song_collect s JOIN user u on s.user_id  = u.user_id
+    <include refid="Columns"></include>
+    order by s.playlist_id desc
+  </select>
+  <sql id="Columns">
+    <where>
+      <if test="userName != null and userName !=''">
+        and u.user_name like #{userName}
+      </if>
+      <if test="playlistName != null and playlistName !=''">
+        and s.playlist_name like #{playlistName}
+      </if>
+    </where>
+  </sql>
+  <resultMap id="ColleResultMap" type="com.gmd.pojo.SongCollect">
+    <id column="playlist_id" jdbcType="INTEGER" property="playlistId" />
+    <result column="playlist_name" jdbcType="VARCHAR" property="playlistName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+
+</mapper>
