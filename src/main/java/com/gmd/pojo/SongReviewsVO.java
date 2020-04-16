@@ -76,11 +76,11 @@ public class SongReviewsVO {
         this.createTime = createTime;
     }
 
-    public Integer getStatus() {
+    public Integer getReviewsStatus() {
         return reviewsStatus;
     }
 
-    public void setStatus(Integer reviewsStatus) {
+    public void setReviewsStatus(Integer reviewsStatus) {
         this.reviewsStatus = reviewsStatus;
     }
 

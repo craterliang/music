@@ -1,9 +1,11 @@
-package com.gmd.mapper;
+package com.gmd.service;
 
+import com.github.pagehelper.PageInfo;
 import com.gmd.pojo.SongCollect;
+
 import java.util.List;
 
-public interface SongCollectMapper {
+public interface CollectService {
     int deleteByPrimaryKey(Integer playlistId);
 
     int insert(SongCollect record);
@@ -13,4 +15,6 @@ public interface SongCollectMapper {
     List<SongCollect> selectAll();
 
     int updateByPrimaryKey(SongCollect record);
+
+    PageInfo<SongCollect> selectSongCollect(SongCollect record,Integer pagenumber);
 }
