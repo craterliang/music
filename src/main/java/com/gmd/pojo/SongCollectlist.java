@@ -5,6 +5,8 @@ public class SongCollectlist {
 
     private Integer songId;
 
+    private String songName;
+
     public Integer getPlaylistId() {
         return playlistId;
     }
@@ -19,5 +21,13 @@ public class SongCollectlist {
 
     public void setSongId(Integer songId) {
         this.songId = songId;
+    }
+
+    public String getSongName() {
+        return songName;
+    }
+
+    public void setSongName(String songName) {
+        this.songName = songName;
     }
 }

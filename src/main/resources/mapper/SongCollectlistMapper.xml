@@ -22,8 +22,8 @@
     from song_collectlist
   </select>
   <select id="selectLrcByColumns" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select playlist_id, song_id
-    from song_collectlist  where playlist_id = #{id,jdbcType=INTEGER}
+    select co.playlist_id, co.song_id,so.song_name
+    from song_collectlist co JOIN song so on co.song_id  = so.song_id and playlist_id = #{id,jdbcType=INTEGER}
   </select>
 
 </mapper>

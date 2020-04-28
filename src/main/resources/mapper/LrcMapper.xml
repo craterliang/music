@@ -33,7 +33,7 @@
   </select>
   <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, lrc_name, lrc_path
-    from lrc where lrc_name like #{lrc,jdbcType=VARCHAR} limt 1
+    from lrc where lrc_name like #{lrc,jdbcType=VARCHAR} LIMIT 1
   </select>
   <select id="selectLrcByColumns" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, lrc_name, lrc_path
